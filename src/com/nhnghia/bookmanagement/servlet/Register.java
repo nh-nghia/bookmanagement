@@ -54,9 +54,6 @@ public class Register extends HttpServlet {
 			userDAO.insertUser(username, password);
 			response.sendRedirect(request.getContextPath() + "/login");
 		}
-		
-		
-		
 	}
 
 }
