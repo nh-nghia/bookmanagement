@@ -75,13 +75,20 @@ public class BookDAO {
 		}
 	}
 	
-	public void insertBook(String name, String author, String publisher, String type, String language, String description, int quantity) {
+	public void insertBook(String name, 
+							String author, 
+							String publisher, 
+							String type, 
+							String language, 
+							String description, 
+							int quantity, 
+							String image) {
 		Connection connection = null;
 		Statement statement = null;
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO books (name, author, publisher, type, language, description, quantity)" + 
+			String sql = "INSERT INTO books (name, author, publisher, type, language, description, quantity, image)" + 
 							"VALUES ('" + name
 							+ "', '" + author
 							+ "', '" + publisher
@@ -89,7 +96,8 @@ public class BookDAO {
 							+ "', '" + language
 							+ "', '" + description
 							+ "'," + quantity
-							+ ");";
+							+ ", '" + image
+							+ "');";
 			statement = connection.createStatement();
 			statement.executeUpdate(sql);
 

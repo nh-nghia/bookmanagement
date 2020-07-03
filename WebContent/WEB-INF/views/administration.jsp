@@ -36,6 +36,7 @@
 						<td>${book.language}</td>
 						<td>${book.description}</td>
 						<td>${book.quantity}</td>
+						<td><img src="${book.image}" width="120" height="150"></td>
 						<td>
 							<a href="deleteBook?id=${book.id}">Delete</a> <!-- truoc dau hoi la url mapping -->
 							<a href="updateBook?id=${book.id}">Update</a>
