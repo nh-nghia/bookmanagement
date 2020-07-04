@@ -13,7 +13,8 @@
 		<jsp:include page="header1.jsp"></jsp:include>
 		<div id="content">
 			<h1>ADD NEW BOOK</h1>
-			<form action="${pageContext.request.contextPath}/insertBook" method="post" enctype="multipart/form-data">
+			<form action="${pageContext.request.contextPath}/insertBook" 
+						method="post" enctype="multipart/form-data"> <!-- form co file bat buoc phai khai bao enctype -->
 				<input type="text" name="name" placeholder="Book Name"> <br>
 				<input type="text" name="author" placeholder="Author"> <br>
 				<input type="text" name="publisher" placeholder="Publisher"> <br>

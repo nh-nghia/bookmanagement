@@ -1,6 +1,7 @@
 package com.nhnghia.bookmanagement.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -84,22 +85,21 @@ public class BookDAO {
 							int quantity, 
 							String image) {
 		Connection connection = null;
-		Statement statement = null;
-		
+		PreparedStatement preparedStatement = null;
 		try {
 			connection = ConnectionFactory.getConnection();
 			String sql = "INSERT INTO books (name, author, publisher, type, language, description, quantity, image)" + 
-							"VALUES ('" + name
-							+ "', '" + author
-							+ "', '" + publisher
-							+ "', '" + type
-							+ "', '" + language
-							+ "', '" + description
-							+ "'," + quantity
-							+ ", '" + image
-							+ "');";
-			statement = connection.createStatement();
-			statement.executeUpdate(sql);
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, author);
+			preparedStatement.setString(3, publisher);
+			preparedStatement.setString(4, type);
+			preparedStatement.setString(5, language);
+			preparedStatement.setString(6, description);
+			preparedStatement.setInt(7, quantity);
+			preparedStatement.setString(8, image);
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,24 +126,34 @@ public class BookDAO {
 		return null;
 	}
 	
-	public void updateBook(int id, String name, String author, String publisher, String type, String language, String description, int quantity) {
+	public void updateBook(int id, 
+							String name, 
+							String author, 
+							String publisher, 
+							String type, 
+							String language, 
+							String description, 
+							int quantity,
+							String image) {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			String sql = "UPDATE books SET name = '" + name + "', "
-										+ "author = '" + author + "', "
-										+ "publisher = '" + publisher + "', "
-										+ "type = '" + type + "', "
-										+ "language = '" + language + "', "
-										+ "description = '" + description + "', "
-										+ "quantity = '" + quantity + "'"
-										+ "WHERE id = " + id
-										+ ";";
-			statement = connection.createStatement();
-			statement.executeUpdate(sql);
-
+			String sql = "UPDATE books SET name = ?, author = ?, publisher = ?, type = ?, language = ?, "
+					+ "description = ?, quantity = ?, image = ? WHERE id = ?;";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, author);
+			preparedStatement.setString(3, publisher);
+			preparedStatement.setString(4, type);
+			preparedStatement.setString(5, language);
+			preparedStatement.setString(6, description);
+			preparedStatement.setInt(7, quantity);
+			preparedStatement.setString(8, image);
+			preparedStatement.setInt(9, id);
+			preparedStatement.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,7 @@
 package com.nhnghia.bookmanagement.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,18 +13,18 @@ import com.nhnghia.bookmanagement.dbconnection.ConnectionFactory;
 public class ContactDAO {
 	public void insertContact (String firstName, String lastName, String email, String message) {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = ConnectionFactory.getConnection();
 			String sql = "INSERT INTO contact (first_name, last_name, email, message)" + 
-					"VALUES ('" + firstName
-					+ "', '" + lastName
-					+ "', '" + email
-					+ "', '" + message
-					+ "');";
-			statement = connection.createStatement();
-			statement.executeUpdate(sql);
+					"VALUES (?, ?, ?, ?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, firstName);
+			preparedStatement.setString(2, lastName);
+			preparedStatement.setString(3, email);
+			preparedStatement.setString(4, message);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

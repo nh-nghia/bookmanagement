@@ -1,6 +1,7 @@
 package com.nhnghia.bookmanagement.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,14 +12,16 @@ import com.nhnghia.bookmanagement.dbconnection.ConnectionFactory;
 public class UserDAO {
 	public User findByUsernameAndPassword(String username, String password) {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
 		try {
 			connection = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery(sql);
+			String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				User user = convertToUser(resultSet);
 				return user;
@@ -31,16 +34,17 @@ public class UserDAO {
 	
 	public void insertUser(String username, String password) {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = ConnectionFactory.getConnection();
 			String sql = "INSERT INTO users (username, password, role)" + 
-					"VALUES ('" + username
-					+ "', '" + password
-					+ "', 'user');";
-			statement = connection.createStatement();
-			statement.executeUpdate(sql);
+					"VALUES (?, ?, ?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			preparedStatement.setString(3, "user");
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

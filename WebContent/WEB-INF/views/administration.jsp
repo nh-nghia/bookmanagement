@@ -24,6 +24,7 @@
 					<th>Language</th>
 					<th>Description</th>
 					<th>Quantity</th>
+					<th>Image</th>
 					<th>Action</th>
 				</tr>
 				<c:forEach items="${bookAttributeServlet}" var="book">

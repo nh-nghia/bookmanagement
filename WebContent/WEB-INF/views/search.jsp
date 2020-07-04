@@ -30,6 +30,7 @@
 					<th>Language</th>
 					<th>Description</th>
 					<th>Quantity</th>
+					<th>Image</th>
 				</tr>
 				<c:forEach items="${bookSearch}" var="book">
 					<tr>
@@ -41,6 +42,7 @@
 						<td>${book.language}</td>
 						<td>${book.description}</td>
 						<td>${book.quantity}</td>
+						<td><img src="${book.image}" width="120" height="150"></td>
 					</tr>
 				
 				</c:forEach>

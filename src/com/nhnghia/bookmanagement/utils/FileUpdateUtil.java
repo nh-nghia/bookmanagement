@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 public class FileUpdateUtil {
-	private static final String UPLOAD_DIR = "resource/images";
+	private static final String UPLOAD_DIR = "source/images/";
 
 	@SuppressWarnings("resource")
 	public static String saveImage(HttpServletRequest request) {
