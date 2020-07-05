@@ -14,9 +14,9 @@
 			<form action="${pageContext.request.contextPath}/contact" method="post">
 				<div id="leftside">
 					<label class="form-label">First Name</label><br>
-					<input type="text" name="firstName" class="form-input"><br>
+					<input type="text" name="firstname" class="form-input"><br>
 					<label class="form-label">Last Name</label><br>
-					<input type="text" name="lastName" class="form-input"><br>
+					<input type="text" name="lastname" class="form-input"><br>
 					<label class="form-label">Contact email*</label><br>
 					<input type="text" name="email" class="form-input"><br>
 					<textarea rows="15" cols="55" name="message" placeholder="Message" class="form-textarea"></textarea>

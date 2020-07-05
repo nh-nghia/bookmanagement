@@ -11,17 +11,17 @@ import com.nhnghia.bookmanagement.bo.Contact;
 import com.nhnghia.bookmanagement.dbconnection.ConnectionFactory;
 
 public class ContactDAO {
-	public void insertContact (String firstName, String lastName, String email, String message) {
+	public void insertContact (String firstname, String lastname, String email, String message) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO contact (first_name, last_name, email, message)" + 
+			String sql = "INSERT INTO contacts (firstname, lastname, email, message)" + 
 					"VALUES (?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, firstName);
-			preparedStatement.setString(2, lastName);
+			preparedStatement.setString(1, firstname);
+			preparedStatement.setString(2, lastname);
 			preparedStatement.setString(3, email);
 			preparedStatement.setString(4, message);
 			preparedStatement.executeUpdate();
@@ -38,7 +38,7 @@ public class ContactDAO {
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM contact";
+			String sql = "SELECT * FROM contacts";
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sql);
 			
@@ -51,12 +51,27 @@ public class ContactDAO {
 		return contactList;
 	}
 	
+	public void deleteContact(int id) {
+		Connection connection = null;
+		Statement statement = null;
+		
+		try {
+			connection = ConnectionFactory.getConnection();
+			String sql = "DELETE FROM contacts WHERE id = " + id;
+			statement = connection.createStatement();
+			statement.executeUpdate(sql);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static Contact convertToContact(ResultSet rs) throws SQLException {
 		Contact contact = new Contact();
-		contact.setFirstName(rs.getString(1));
-		contact.setLastName(rs.getString(2));
-		contact.setEmail(rs.getString(3));
-		contact.setMessage(rs.getString(4));
+		contact.setId(rs.getInt(1));
+		contact.setFirstname(rs.getString(2));
+		contact.setLastname(rs.getString(3));
+		contact.setEmail(rs.getString(4));
+		contact.setMessage(rs.getString(5));
 		return contact;
 	}
 }

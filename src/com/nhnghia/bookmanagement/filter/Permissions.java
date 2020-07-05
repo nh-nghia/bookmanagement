@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * Servlet Filter implementation class Permissions
  */
 @WebFilter(filterName = "/Permissions", urlPatterns = {"/administration", "/deleteBook",
-		"/history", "/insertBook", "/updateBook"})
+		"/history", "/insertBook", "/updateBook", "/deleteHistory"})
 public class Permissions implements Filter {
 
     /**

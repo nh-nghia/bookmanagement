@@ -1,25 +1,34 @@
 package com.nhnghia.bookmanagement.bo;
 
 public class Contact {
-	private String firstName;
-	private String lastName;
+	private int id;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private String message;
 
-	public String getFirstName() {
-		return firstName;
+	public int getId() {
+		return id;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
