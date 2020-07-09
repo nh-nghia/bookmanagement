@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="source/css/Style.css">
+<link rel="stylesheet" type="text/css" href="resource/css/Style.css">
 <title>Register</title>
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="header4.jsp"></jsp:include>
+		<jsp:include page="header.jsp"></jsp:include>
 		<div id="content">
 			<div class="register">
 				<form action="${pageContext.request.contextPath}/register" method="post">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="source/css/Style.css">
+<link rel="stylesheet" type="text/css" href="resource/css/Style.css">
 <title>Contact</title>
 </head>
 <body>
