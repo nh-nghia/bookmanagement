@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	public static final String URL = "jdbc:mysql://localhost:3306/book_management?characterEncoding=UTF8";
+	public static final String URL = "jdbc:mysql://localhost:3306/dbbookmanagement?characterEncoding=UTF8";
 	public static final String USER = "root";
 	public static final String PASS = "nhnghia";
 
